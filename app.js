@@ -9,12 +9,12 @@ const app = express();
 
 app
   .use(bodyParser.json())
-  .use('/', contactRoutes)
+  .use('/', require('./routes'))
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
-  .use('/contacts', contactRoutes)
+  .use('/contacts', contactRoutes);
 
 mongodb.initDb((err, mongodb) => {
   if (err) {
